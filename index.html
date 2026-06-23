@@ -1,1 +1,55 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>URL Encoder & Decoder - Free Online Tool</title><meta name="description" content="Free URL encoder/decoder. Encode URLs, query strings, and special characters instantly."><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,sans-serif;background:#0d1117;color:#c9d1d9;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh}main{max-width:500px;text-align:center;padding:40px}h1{color:#58a6ff}.btn{display:inline-block;padding:12px 24px;border-radius:6px;margin:8px;text-decoration:none;font-weight:500}.btn-p{background:#238636;color:#fff}.btn-s{background:#21262d;color:#c9d1d9;border:1px solid #30363d}a{color:#58a6ff}</style></head><body><main><h1>URL Encoder & Decoder</h1><p style="color:#8b949e">Free URL encoder/decoder. Encode URLs, query strings, and special characters instantly.</p><p style="color:#8b949e;margin:20px 0">🛠 <a href="https://z1439527767.github.io/devtoolhub">DevToolHub</a> — all free tools</p><a href="https://zestful572.gumroad.com" class="btn btn-p">💎 Pro Products</a></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>URL Encoder/Decoder - Free Online Tool | DevToolHub</title>
+<meta name="description" content="Free URL encoder and decoder. Encode and decode URLs, query strings, and special characters. 100% client-side, instant results.">
+<meta name="keywords" content="url encoder, url decoder, encode url, decode url, url encoding online">
+<meta name="robots" content="index,follow">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#0d1117;color:#c9d1d9;min-height:100vh;display:flex;flex-direction:column}
+header{background:#161b22;border-bottom:1px solid #30363d;padding:14px 24px}
+header .inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+header h1{font-size:17px;color:#58a6ff}header nav a{color:#8b949e;text-decoration:none;font-size:12px;margin-left:18px}header nav a:hover{color:#c9d1d9}
+.container{max-width:900px;margin:30px auto;padding:0 24px;flex:1}
+.mode-row{display:flex;gap:0;margin-bottom:16px;justify-content:center}
+.mode-btn{padding:8px 24px;border:1px solid #30363d;background:#161b22;color:#8b949e;cursor:pointer;font-size:13px;font-weight:500}
+.mode-btn:first-child{border-radius:6px 0 0 6px}
+.mode-btn:last-child{border-radius:0 6px 6px 0}
+.mode-btn.active{background:#1f6feb;color:#fff;border-color:#1f6feb}
+.editor-box{background:#161b22;border:1px solid #30363d;border-radius:10px;overflow:hidden;margin-bottom:16px}
+.editor-header{background:#21262d;padding:10px 16px;font-size:12px;font-weight:600;color:#8b949e;border-bottom:1px solid #30363d;display:flex;justify-content:space-between;align-items:center}
+.editor-header button{background:transparent;border:1px solid #30363d;color:#c9d1d9;padding:4px 12px;border-radius:4px;cursor:pointer;font-size:11px}
+.editor-header button:hover{background:#30363d}
+textarea{width:100%;height:200px;background:transparent;color:#c9d1d9;border:none;padding:16px;font-family:Cascadia Code,SF Mono,monospace;font-size:13px;resize:vertical;line-height:1.6}
+textarea:focus{outline:none}
+.toolbar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;justify-content:center}
+.btn{padding:8px 20px;border-radius:6px;border:none;cursor:pointer;font-size:13px;font-weight:500;transition:all .2s}
+.btn-p{background:#238636;color:#fff}.btn-p:hover{background:#2ea043}
+.btn-s{background:#21262d;color:#c9d1d9;border:1px solid #30363d}.btn-s:hover{background:#30363d}
+footer{text-align:center;padding:18px;color:#484f58;font-size:12px;border-top:1px solid #30363d;margin-top:28px}footer a{color:#58a6ff;text-decoration:none}
+</style>
+</head>
+<body>
+<header><div class="inner"><h1>🔗 URL Encoder / Decoder</h1><nav><a href="https://z1439527767.github.io/devtoolhub">Tools</a><a href="https://zestful572.gumroad.com">Pro</a></nav></div></header>
+<div class="container">
+<div class="mode-row"><button class="mode-btn active" id="btn-enc" onclick="setMode('enc')">Encode</button><button class="mode-btn" id="btn-dec" onclick="setMode('dec')">Decode</button></div>
+<div class="editor-box"><div class="editor-header"><span id="il">Text to Encode</span><button onclick="pasteText()">Paste</button></div><textarea id="inp" placeholder="Enter text to encode or decode..." spellcheck="false"></textarea></div>
+<div class="toolbar"><button class="btn btn-p" onclick="conv()">Convert</button><button class="btn btn-s" onclick="swapIO()">Swap</button><button class="btn btn-s" onclick="copyOut()">Copy Output</button><button class="btn btn-s" onclick="clearAll()">Clear</button></div>
+<div class="editor-box"><div class="editor-header"><span id="ol">Encoded Result</span><button onclick="copyOut()">Copy</button></div><textarea id="out" placeholder="Result will appear here..." readonly spellcheck="false"></textarea></div>
+</div>
+<footer><p><a href="https://z1439527767.github.io/devtoolhub">DevToolHub</a> · <a href="https://zestful572.gumroad.com/l/cybersecurity-toolkit">Cybersecurity Toolkit</a></p></footer>
+<script>
+var mode='enc';
+function setMode(m){mode=m;document.getElementById('btn-enc').classList.toggle('active',m==='enc');document.getElementById('btn-dec').classList.toggle('active',m==='dec');document.getElementById('il').textContent=m==='enc'?'Text to Encode':'Text to Decode';document.getElementById('ol').textContent=m==='enc'?'Encoded Result':'Decoded Result';conv()}
+function conv(){var i=document.getElementById('inp').value,o=document.getElementById('out');try{o.value=mode==='enc'?encodeURIComponent(i):decodeURIComponent(i)}catch(e){o.value='Error: '+e.message}}
+function swapIO(){var inp=document.getElementById('inp'),out=document.getElementById('out');[inp.value,out.value]=[out.value,inp.value];conv()}
+function copyOut(){var v=document.getElementById('out').value;if(!v)return;navigator.clipboard.writeText(v)}
+async function pasteText(){try{var t=await navigator.clipboard.readText();document.getElementById('inp').value=t;conv()}catch(e){}}
+function clearAll(){document.getElementById('inp').value='';document.getElementById('out').value=''}
+document.getElementById('inp').addEventListener('input',conv);
+</script>
+</body>
+</html>
